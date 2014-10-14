@@ -7,7 +7,7 @@ using System;
 
 public class SettingReader
 {
-    Dictionary<string, string> m_valueDic;
+    Dictionary<string, string> m_valueDic = new Dictionary<string, string>();
     string m_path;
     string m_text;
     public void LoadFromFile(string path)

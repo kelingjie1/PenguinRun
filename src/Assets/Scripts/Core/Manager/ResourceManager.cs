@@ -6,6 +6,6 @@ public class ResourceManager
     public static GameObject Load(string name)
     {
         GameObject obj= Resources.Load(name) as GameObject;
-        return obj;
+        return GameObject.Instantiate(obj) as GameObject;
     }
 }
