@@ -5,12 +5,17 @@ public class Util
 {
     public static Transform FindTransform(string name,Transform tran)
     {
+        if (tran.name.Equals(name))
+        {
+            return tran;
+        }
         for (int i = 0; i < tran.childCount; i++)
         {
             Transform t = tran.GetChild(i);
-            if (t.name.Equals(name))
+            t = FindTransform(name, t);
+            if (t!=null)
             {
-                return tran;
+                return t;
             }
         }
         return null;
@@ -23,5 +28,10 @@ public class Util
 		    return null; 
 	    }
         return t.gameObject;
+    }
+    public static void AddChild(GameObject obj,GameObject parent)
+    {
+        obj.transform.parent = parent.transform;
+        obj.transform.localScale = new Vector3(1, 1, 1);
     }
 }

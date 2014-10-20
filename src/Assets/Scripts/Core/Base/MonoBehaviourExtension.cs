@@ -7,4 +7,9 @@ public static class MonoBehaviourExtension
     {
         return Util.FindChild(name, obj);
     }
+
+    public static void AddChild(this GameObject obj,GameObject child)
+    {
+        Util.AddChild(child, obj);
+    }
 }

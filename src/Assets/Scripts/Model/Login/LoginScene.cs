@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LoginScene : MonoBehaviour 
 {
-    void Awake()
+    void Start()
     {
         PageManager.Instance.ShowPage(LogoPage.Instance);
     }

@@ -39,7 +39,10 @@ public class PageManager : MonoBehaviour
 
     void AnimationFinish()
     {
-        m_currentPage.PageDidDisappear();
+        if (m_currentPage!=null)
+        {
+            m_currentPage.PageDidDisappear();
+        }
         m_currentPage = m_nextPage;
         m_currentPage.PageDidAppear();
         m_nextPage = null;
@@ -48,6 +51,7 @@ public class PageManager : MonoBehaviour
     {
         Tweener tweener = null;
         m_nextPage = page;
+        this.gameObject.AddChild(m_nextPage.gameObject);
         if (m_currentPage)
         {
             m_currentPage.PageWillDisappear();
