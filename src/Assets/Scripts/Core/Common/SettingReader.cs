@@ -35,6 +35,10 @@ public class SettingReader
                 break;
             }
             line = line.Trim();
+            if (line.Length==0)
+            {
+                continue;
+            }
             if (line.Substring(0, 2) == "//")
             {
                 continue;

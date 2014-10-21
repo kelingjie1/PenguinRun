@@ -4,3 +4,4 @@
 *.sln
 src/Library/
 src/Temp/
+src/obj/

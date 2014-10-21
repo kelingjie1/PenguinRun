@@ -28,9 +28,8 @@ public class Test : MonoBehaviour
     }
 	void Start () 
     {
-        GameObject obj;
-        Debug.Log(1);
-        Debug.Log(3);
+        Debug.Log(Setting.Instance.currentSetting.GetInt("StartSpeed"));
+        Debug.Log(Setting.Instance.currentSetting.GetInt("AddSpeed"));
 	}
 
 }

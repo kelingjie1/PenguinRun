@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class Setting
 {
@@ -17,8 +18,9 @@ public class Setting
     }
     Setting()
     {
-        TextAsset defaultSettingAsset = Resources.Load("Text/DefaultSetting.txt") as TextAsset;
+        TextAsset defaultSettingAsset = Resources.Load("Text/DefaultSetting") as TextAsset;
         defaultSetting = new SettingReader();
+        currentSetting = new SettingReader();
         if (defaultSettingAsset==null)
         {
             Debug.LogError("defaultSetting is not exist");
@@ -26,6 +28,14 @@ public class Setting
         else
         {
             defaultSetting.LoadFromString(defaultSettingAsset.text);
+        }
+        if (File.Exists(Application.persistentDataPath + "/CurrentSetting.txt"))
+        {
+            currentSetting.LoadFromFile(Application.persistentDataPath + "/CurrentSetting.txt");
+        }
+        else
+        {
+            currentSetting.LoadFromString(defaultSettingAsset.text);
         }
         
     }
