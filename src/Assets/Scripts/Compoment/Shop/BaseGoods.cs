@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BaseProp
+public class BaseGoods
 {
     public int id;
     public string name;
@@ -12,7 +12,7 @@ public class BaseProp
     {
         foreach (KeyValuePair<int,int> item in cost)
         {
-            if (ShopManager.Instance.PropList[item.Key].count<item.Value)
+            if (ShopManager.Instance.GoodsList[item.Key].count<item.Value)
             {
                 return ShopError.CannotOffer;
             }
@@ -29,7 +29,7 @@ public class BaseProp
 
         foreach (KeyValuePair<int, int> item in cost)
         {
-            ShopManager.Instance.ChangePropCount(item.Key, ShopManager.Instance.PropList[item.Key].count - item.Value);
+            ShopManager.Instance.ChangeGoodsCount(item.Key, ShopManager.Instance.GoodsList[item.Key].count - item.Value);
         }
         return ShopError.None;
     }

@@ -13,9 +13,9 @@ public interface IShopInterface
 {
     //充值
     void Recharge(int count);
-    void BuyProp(int id, int count, ShopError error);
+    void BuyGoods(int id, int count, ShopError error);
 
-    void PropCountChange(int id, int oldcount, int newcount);
+    void GoodsCountChange(int id, int oldcount, int newcount);
 }
 public class ShopManager
 {
@@ -34,35 +34,35 @@ public class ShopManager
     }
 
     public IShopInterface shopDelegate;
-    List<BaseProp> m_propList = new List<BaseProp>();
-    public List<BaseProp> PropList
+    List<BaseGoods> m_goodsList = new List<BaseGoods>();
+    public List<BaseGoods> GoodsList
     {
         get
         {
-            return m_propList;
+            return m_goodsList;
         }
     }
-    public void AddProp(BaseProp prop)
+    public void AddGoods(BaseGoods goods)
     {
-        m_propList.Add(prop);
+        m_goodsList.Add(goods);
     }
-    public ShopError BuyProp(int id, int count = 1)
+    public ShopError BuyGoods(int id, int count = 1)
     {
-        ShopError error = m_propList[id].Buy();
+        ShopError error = m_goodsList[id].Buy();
         if (shopDelegate!=null)
         {
-            shopDelegate.BuyProp(id, count, error);
+            shopDelegate.BuyGoods(id, count, error);
         }
         return error;
     }
-    
-    public void ChangePropCount(int id,int newcount)
+
+    public void ChangeGoodsCount(int id, int newcount)
     {
-        int oldcount = m_propList[id].count;
-        m_propList[id].count = newcount;
+        int oldcount = m_goodsList[id].count;
+        m_goodsList[id].count = newcount;
         if (shopDelegate != null)
         {
-            shopDelegate.PropCountChange(id, oldcount, newcount);
+            shopDelegate.GoodsCountChange(id, oldcount, newcount);
         }
     }
 
