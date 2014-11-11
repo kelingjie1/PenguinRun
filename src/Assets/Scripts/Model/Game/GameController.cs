@@ -1,28 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+public enum GameType
+{
+    Tap,
+}
 public class GameController : MonoBehaviour 
 {
-    public bool running;
-    public int Speed = Setting.Instance.defaultSetting.GetInt("StartSpeed");
+    static GameController m_instance;
+    public static GameController Instance
+    {
+        get
+        {
+            return m_instance;
+        }
+    }
 
-    GameObject Map;
-    GameObject Mountain;
-    GameObject River;
+    public GameType gameType=GameType.Tap;
+    public bool running;
+    public int speed;
+
+    GameObject map;
+    GameObject mountain;
+    River river;
+
 	void Awake()
     {
-        Map = gameObject.FindChild("Map");
-        Mountain = gameObject.FindChild("Mountain");
-        River = gameObject.FindChild("River");
+        m_instance = this;
+        map = gameObject.FindChild("Map");
+        mountain = gameObject.FindChild("Mountain");
+        river = gameObject.FindChild("River").GetComponent<River>();
+        speed = Setting.Instance.defaultSetting.GetInt("StartSpeed");
         
+    }
+    void Start()
+    {
+        river.CreateMap();
     }
 	void Update () 
     {
         if (running)
         {
-            Map.transform.localPosition = new Vector3(0, Map.transform.localPosition.y - Time.deltaTime * Speed, 0);
-            int mountainy = (int)(Map.transform.localPosition.y / Screen.height);
-            Mountain.transform.localPosition = new Vector3(0, -mountainy * Screen.height, 0);
+            map.transform.localPosition = new Vector3(0, map.transform.localPosition.y - Time.deltaTime * speed, 0);
+            int mountainy = (int)(map.transform.localPosition.y / Screen.height);
+            mountain.transform.localPosition = new Vector3(0, -mountainy * Screen.height, 0);
         }
 	}
 }

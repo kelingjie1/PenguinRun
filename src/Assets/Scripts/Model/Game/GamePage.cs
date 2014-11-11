@@ -10,7 +10,7 @@ public class GamePage : BasePage
         {
             if (m_instance == null)
             {
-                m_instance = ResourceManager.Load("Prefab/Game/GamePage").GetComponent<GamePage>();
+                m_instance = Resources.Load<GameObject>("Prefab/Game/GamePage").Instantiate().GetComponent<GamePage>();
             }
             return m_instance;
         }

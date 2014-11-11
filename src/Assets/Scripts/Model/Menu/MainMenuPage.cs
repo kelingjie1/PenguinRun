@@ -10,7 +10,7 @@ public class MainMenuPage : BasePage
 		{
 			if (m_instance == null)
 			{
-				m_instance = ResourceManager.Load("Prefab/Login/LMainMenuPage").GetComponent<MainMenuPage>();
+                m_instance = Resources.Load<GameObject>("Prefab/Login/LMainMenuPage").Instantiate().GetComponent<MainMenuPage>();
 			}
 			return m_instance;
 		}
